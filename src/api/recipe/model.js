@@ -37,12 +37,12 @@ recipeSchema.methods = {
            // simple view
           id: this.id,
           name: this.name,
-          category: this.category
+          category: this.category,
+          price: this.price
       }
   
       return full ? {
           ...view,
-          price: this.price,
           ingredients: this.ingredients,
           preparationTime: this.preparationTime,
           createdAt: this.createdAt,

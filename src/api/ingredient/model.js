@@ -25,12 +25,12 @@ ingredientSchema.methods = {
         const view = {
              // simple view
             id: this.id,
-            name: this.name
+            name: this.name,
+            availability: this.availability
         }
     
         return full ? {
             ...view,
-            availability: this.availability,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt
         } : view

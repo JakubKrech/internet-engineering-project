@@ -56,6 +56,18 @@ const search = ({query}, res, next) => {
         .catch(next)
 }
 
+const asc = ({ query }, res, next) => 
+    Ingredient.find(query).sort({name: 1})
+        .then((ingredient) => ingredient.map((ingredient) => ingredient.view()))
+        .then(success(res))
+        .catch(next)
+
+const desc = ({ query }, res, next) => 
+   Ingredient.find(query).sort({name: -1})
+        .then((ingredient) => ingredient.map((ingredient) => ingredient.view()))
+        .then(success(res))
+        .catch(next)
+
 module.exports = {
-    create, index, show, update, destroy, search
+    create, index, show, update, destroy, search, asc, desc
 }
