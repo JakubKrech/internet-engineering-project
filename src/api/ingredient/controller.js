@@ -37,6 +37,25 @@ const destroy = ({ params }, res, next) =>
         .then(success(res, 204))
         .catch(next)
 
+const search = ({query}, res, next) => {
+    let dbquery = []
+    for(const key in query){
+        switch (key) {
+            case 'availability':
+                dbquery.push({"availability": {$regex: new RegExp(`${query['availability']}`), $options: 'i'}})
+                break;
+        }
+    }
+                
+    if(dbquery.length === 0) return res.json([])
+                
+    return Ingredient.find({$and : dbquery}).sort({year: -1}).limit(10)
+        .then(notFound(res))
+        .then((ingredient) => ingredient ? ingredient.map(ingredient => ingredient.view(true)) : null)
+        .then(success(res))
+        .catch(next)
+}
+
 module.exports = {
-    create, index, show, update, destroy
+    create, index, show, update, destroy, search
 }

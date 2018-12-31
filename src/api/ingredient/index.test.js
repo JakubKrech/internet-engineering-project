@@ -1,6 +1,6 @@
 // Tu definiujemy testy endpointu
-/*
-import request from 'supertest'
+
+/*import request from 'supertest'
 import { apiRoot } from '../../config'
 import express from '../../services/express'
 import routes, { Ingredient } from '.'

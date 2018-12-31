@@ -11,6 +11,9 @@ router.post('/',
 router.get('/',
   index)
 
+router.get('/search',
+  search)
+
 router.get('/:id',
   show)
 
